@@ -1,19 +1,50 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+{#        <link rel="stylesheet" href="{{ asset('build/app.css') }}">#}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+    <header class="p-3 bg-dark text-white">
+    <div class="">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
+                <li><a href="/profile" class="nav-link px-2 text-white">Profile</a></li>
+            </ul>
+            <div class="text-end">
+                <a href="/{{ app.user ? 'logout' : 'login' }}" type="button"
+                   class="btn btn-outline-light me-2">{{ app.user ? 'Logout' : 'Sign in' }}</a>
+                {% if app.user is empty %}
+                    <a href="/register" type="button" class="btn btn-primary">Sign up</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+<div class="main">
+    {% block body %}{% endblock %}
+</div>
+<div class="bg-dark text-white">
+    <footer class="py-3">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
+            <li class="nav-item"><a href="/profile" class="nav-link px-2 text-muted">Profile</a></li>
+        </ul>
+        <p class="text-center text-muted">© {{ "now"|date("Y") }} Support service, Inc</p>
+    </footer>
+</div>
+</body>
 </html>
