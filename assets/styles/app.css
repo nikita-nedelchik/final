@@ -13,3 +13,9 @@
 .admin-container {
 
 }
+
+.register_wrapper, .login_wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 50px;
+}
