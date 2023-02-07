@@ -5,9 +5,11 @@
             <div class="col-md-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     <img class="rounded-circle" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                    <span class="font-weight-bold">username</span>
-                    <span class="text-black-50">email</span>
-                    <a href="/admin" class="btn btn-primary mt-5">Go to admin part</a>
+                    <span class="font-weight-bold">{{ user.username }}</span>
+                    <span class="text-black-50">{{ user.email }}</span>
+                    {% if isAdmin %}
+                        <a href="/admin" class="btn btn-primary mt-5">Go to admin part</a>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-md-7 border-right">
@@ -18,17 +20,17 @@
                     <div class="row mt-2">
                         <div class="col-md-6">
                             <label class="labels" for="first_name">First Name</label>
-                            <input type="text" id="first_name" class="form-control mt-2" value="" readonly>
+                            <input type="text" id="first_name" class="form-control mt-2" value="{{ user.firstName }}" readonly>
                         </div>
                         <div class="col-md-6">
                             <label class="labels" for="second_name">Second Name</label>
-                            <input type="text" id="second_name" class="form-control mt-2" value="" readonly>
+                            <input type="text" id="second_name" class="form-control mt-2" value="{{ user.lastName }}" readonly>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12">
                             <label class="labels" for="email">Email</label>
-                            <input type="text" id="email" class="form-control mt-2" readonly value="">
+                            <input type="text" id="email" class="form-control mt-2" readonly value="{{ user.email }}">
                         </div>
                     </div>
                 </div>
@@ -58,14 +60,9 @@
                             </a>
                         </div>
                     </div>
-
                 </div>
-
-
-
             </div>
             <div class="col-md-4">
-
             </div>
         </div>
     </div>
