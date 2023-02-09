@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="ticket_form_wrapper">
+        {{ form(ticketForm) }}
+        {% if message is defined and message != '' %}
+            <div class="alert alert-success text-center">
+                {{ message }}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

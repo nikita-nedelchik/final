@@ -18,6 +18,9 @@ class Status
     #[ORM\OneToMany(mappedBy: 'status', targetEntity: Ticket::class)]
     private Collection $ticket;
 
+    #[ORM\Column(length: 20)]
+    private ?string $type = null;
+
     public function __construct()
     {
         $this->ticket = new ArrayCollection();
@@ -54,6 +57,18 @@ class Status
                 $ticket->setStatus(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

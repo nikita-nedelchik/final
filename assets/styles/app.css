@@ -14,7 +14,7 @@
 
 }
 
-.register_wrapper, .login_wrapper {
+.register_wrapper, .login_wrapper, .ticket_form_wrapper {
     max-width: 500px;
     margin: 0 auto;
     padding: 50px;
