@@ -21,6 +21,9 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('first_name', TextType::class, [
                 'required' => false,
+                'label_attr' => [
+                    'class' => 'required'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a first name'
@@ -29,6 +32,9 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('last_name', TextType::class, [
                 'required' => false,
+                'label_attr' => [
+                    'class' => 'required'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a last name'
@@ -37,6 +43,9 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('username', TextType::class, [
                 'required' => false,
+                'label_attr' => [
+                    'class' => 'required'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a username'
@@ -50,6 +59,9 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'required' => false,
+                'label_attr' => [
+                    'class' => 'required'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter an email'
@@ -64,6 +76,16 @@ class RegistrationFormType extends AbstractType
                 'type' => PasswordType::class,
                 'required' => false,
                 'mapped' => false,
+                'first_options'  => [
+                    'label_attr' => [
+                        'class' => 'required'
+                    ],
+                ],
+                'second_options' => [
+                    'label_attr' => [
+                        'class' => 'required'
+                    ],
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',

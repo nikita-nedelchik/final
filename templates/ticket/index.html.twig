@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tickets{% endblock %}
+{% block body %}
+    <div class="container mt-5">
+        <div class="title_header">
+            <h4>Your tickets</h4>
+            <a href="/tickets/create" class="btn btn-primary d-block">Create a new ticket</a>
+        </div>
+        <table class="table align-middle mb-0 bg-white mt-2 tickets_table">
+            <thead class="bg-light">
+            <tr>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Date created</th>
+                <th colspan="2">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ticket in tickets %}
+                <tr>
+                    <td>
+                        <p class="fw-normal mb-1">{{ ticket.subject }}</p>
+                    </td>
+                    <td>
+                        <span class="badge badge-warning rounded-pill d-inline {{ ticket.status.type }}">{{ ticket.status.type }}</span>
+                    </td>
+                    <td>{{ ticket.dateCreated|date('d-m-Y') }}</td>
+                    <td>
+                        <a href="/tickets/{{ ticket.id }}/update" type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark">
+                            Edit
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/tickets/{{ ticket.id }}/delete" type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}

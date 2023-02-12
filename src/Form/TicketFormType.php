@@ -19,6 +19,9 @@ class TicketFormType extends AbstractType
         $builder
             ->add('subject', TextType::class, [
                 'required' => false,
+                'label_attr' => [
+                    'class' => 'required'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a subject'
@@ -27,6 +30,9 @@ class TicketFormType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 'required' => false,
+                'label_attr' => [
+                    'class' => 'required'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a description of the ticket'
@@ -38,7 +44,7 @@ class TicketFormType extends AbstractType
                     ])
                 ]
             ])
-            ->add('submit', SubmitType::class, [
+            ->add('Submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn-primary w-100',
                 ]
