@@ -2,20 +2,23 @@
 
 namespace App\Helper;
 
-use App\Entity\Status;
 use App\Entity\Ticket;
 use App\Enum\TicketStatusEnums;
+use App\Form\AdminTicketFormType;
 use App\Form\TicketFormType;
+use App\Repository\StatusRepository;
 use App\Repository\TicketRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class TicketActionHelper extends AbstractController
 {
-    public function __construct(private EntityManagerInterface $entityManager, private TicketRepository $ticketRepository)
-    {
+    public function __construct(
+        private EntityManagerInterface $entityManager,
+        private TicketRepository $ticketRepository,
+        private StatusRepository $statusRepository
+    ) {
     }
 
     public function getAllTickets(): array
@@ -33,18 +36,14 @@ class TicketActionHelper extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $newTicket = $form->getData();
-            $statusType = TicketStatusEnums::Unresolved->value;
+            $statusType = $this->statusRepository->find(TicketStatusEnums::Unresolved->value);
             $dateCreated = new \DateTime();
             $user = $this->getUser();
 
-            $status = new Status();
-            $status->addTicket($newTicket);
-            $status->setType($statusType);
-
             $newTicket->setUser($user);
             $newTicket->setDateCreated($dateCreated);
+            $newTicket->setStatus($statusType);
 
-            $this->entityManager->persist($status);
             $this->entityManager->persist($newTicket);
             $this->entityManager->flush();
 
@@ -75,6 +74,33 @@ class TicketActionHelper extends AbstractController
 
             $ticket->setSubject($newSubject);
             $ticket->setDescription($newDescription);
+
+            $this->entityManager->flush();
+
+            $message = 'Ticket has been updated successfully';
+        }
+
+        return [
+            'form' => $form,
+            'message' => $message
+        ];
+    }
+
+    public function updateTicketByAdmin(int $id, Request $request): array
+    {
+        $ticket = $this->ticketRepository->find($id);
+        $message = '';
+
+        $form = $this->createForm(AdminTicketFormType::class, $ticket);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $newSubject = $form->get('subject')->getData();
+            $newDescription = $form->get('description')->getData();
+            $newStatus = $form->get('status')->getData();
+
+            $ticket->setSubject($newSubject);
+            $ticket->setDescription($newDescription);
+            $ticket->setStatus($newStatus);
 
             $this->entityManager->flush();
 

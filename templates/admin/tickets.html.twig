@@ -1,15 +1,14 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Tickets{% endblock %}
-{% block body %}
+{% extends '/admin/index.html.twig' %}
+{% block admin_body %}
     <div class="container mt-5">
         <div class="title_header">
-            <h4>Your tickets</h4>
-            <a href="/tickets/create" class="btn btn-primary d-block">Create a new ticket</a>
+            <h4>User's tickets</h4>
+{#            <a href="/tickets/create" class="btn btn-primary d-block">Create a new ticket</a>#}
         </div>
         <table class="table align-middle mb-0 bg-white mt-2 tickets_table">
             <thead class="bg-light">
             <tr>
+                <th>Username</th>
                 <th>Subject</th>
                 <th>Status</th>
                 <th>Date created</th>
@@ -20,6 +19,9 @@
             {% for ticket in tickets %}
                 <tr>
                     <td>
+                        <p class="fw-normal mb-1">{{ ticket.user.username }}</p>
+                    </td>
+                    <td>
                         <p class="fw-normal mb-1">{{ ticket.subject }}</p>
                     </td>
                     <td>
@@ -27,18 +29,20 @@
                     </td>
                     <td>{{ ticket.dateCreated|date('d-m-Y') }}</td>
                     <td>
-                        <a href="/tickets/{{ ticket.id }}/update" type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark">
-                            Edit
+                        <a href="/admin/tickets/{{ ticket.id }}" type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark">
+                            Change status
                         </a>
                     </td>
                     <td>
-                        <a href="/tickets/{{ ticket.id }}/delete" type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark">
-                            Delete
+                        <a href="/admin/tickets/{{ ticket.id }}/chatting" type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark">
+                            Chat
                         </a>
                     </td>
                 </tr>
             {% endfor %}
+
             </tbody>
         </table>
+
     </div>
 {% endblock %}

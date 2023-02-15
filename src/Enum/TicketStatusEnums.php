@@ -2,9 +2,9 @@
 
 namespace App\Enum;
 
-enum TicketStatusEnums: string
+enum TicketStatusEnums: int
 {
-    case Resolved = 'resolved';
-    case Unresolved = 'unresolved';
-    case Frozen = 'frozen';
+    case Unresolved = 1;
+    case Resolved = 2;
+    case Frozen = 3;
 }
