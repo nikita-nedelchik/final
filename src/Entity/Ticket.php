@@ -22,10 +22,6 @@ class Ticket
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'ticket')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Status $status = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateCreated = null;
 
@@ -35,6 +31,10 @@ class Ticket
 
     #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: Message::class)]
     private Collection $messages;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Status $status = null;
 
     public function __construct()
     {
@@ -66,18 +66,6 @@ class Ticket
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getStatus(): ?Status
-    {
-        return $this->status;
-    }
-
-    public function setStatus(?Status $status): self
-    {
-        $this->status = $status;
 
         return $this;
     }
@@ -132,6 +120,18 @@ class Ticket
                 $message->setTicket(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStatus(): ?Status
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?Status $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

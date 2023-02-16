@@ -1,0 +1,12 @@
+{% extends '/admin/index.html.twig' %}
+
+{% block admin_body %}
+    <div class="ticket_form_wrapper">
+        {{ form(form) }}
+        {% if message is defined and message != '' %}
+            <div class="alert alert-success text-center">
+                {{ message }}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

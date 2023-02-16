@@ -11,6 +11,9 @@ class ProfileController extends AbstractController
     #[Route(path: '/profile', name: 'profile_index')]
     public function profile(): Response
     {
-        return $this->render('/profile/index.html.twig');
+        return $this->render('/profile/index.html.twig', [
+            'user' => $this->getUser(),
+            'isAdmin' => in_array('ROLE_ADMIN', $this->getUser()->getRoles())
+        ]);
     }
 }

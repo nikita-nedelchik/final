@@ -4,6 +4,7 @@
 
 .ticket {
     width: 200px;
+    margin: 0 auto;
 }
 
 #sidebarMenu {
@@ -14,8 +15,50 @@
 
 }
 
-.register_wrapper, .login_wrapper {
+label.required:after {
+    content: "*";
+    color: red;
+    margin-left: 5px;
+}
+
+.register_wrapper, .login_wrapper, .ticket_form_wrapper {
     max-width: 500px;
     margin: 0 auto;
     padding: 50px;
+}
+
+.title_header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.resolved {
+    background-color: #d6f0e0;
+    color: #0d6832 !important;
+}
+
+.frozen {
+    background-color: #dfe7f6;
+    color: #2c58a0 !important;
+}
+
+.unresolved {
+    background-color: #fbf0da;
+    color: #73510d !important;
+}
+
+.tickets_table .btn-link {
+    text-decoration: none;
+}
+
+.btn-link, .btn-link:first-child:hover, .btn-link:focus-visible, .btn-link:hover, :not(.btn-check)+.btn-link:hover {
+    text-decoration: none;
+    box-shadow: var(--mdb-btn-box-shadow);
+}
+
+.btn:first-child:hover, .btn:focus-visible, .btn:hover, :not(.btn-check)+.btn:hover {
+    box-shadow: var(--mdb-btn-hover-box-shadow);
+}
+.btn-link:hover {
+    color: var(--mdb-btn-hover-color);
 }
