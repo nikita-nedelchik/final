@@ -36,6 +36,9 @@ class Ticket
     #[ORM\JoinColumn(nullable: false)]
     private ?Status $status = null;
 
+    #[ORM\ManyToOne]
+    private ?Admin $support = null;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -132,6 +135,18 @@ class Ticket
     public function setStatus(?Status $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getSupport(): ?Admin
+    {
+        return $this->support;
+    }
+
+    public function setSupport(?Admin $support): self
+    {
+        $this->support = $support;
 
         return $this;
     }
