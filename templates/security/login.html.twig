@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="login_wrapper">
-        <form method="post">
+        <form class="mb-4" method="post">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
@@ -32,5 +32,15 @@
                 Sign in
             </button>
         </form>
+        <div class="txt1 text-center p-t-54 p-b-20">
+            <span class="signin_text">
+                Or Sign In Using
+            </span>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-12">
+            <a href="/login/google" class="btn-google">
+                <span class="hidden-xs hidden-sm">Sign in with google</span>
+            </a>
+        </div>
     </div>
 {% endblock %}

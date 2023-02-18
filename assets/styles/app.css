@@ -37,7 +37,7 @@ label.required:after {
     color: #0d6832 !important;
 }
 
-.frozen {
+.frozen, .waiting, .in.process {
     background-color: #dfe7f6;
     color: #2c58a0 !important;
 }
@@ -61,4 +61,28 @@ label.required:after {
 }
 .btn-link:hover {
     color: var(--mdb-btn-hover-color);
+}
+
+.signin_text {
+    font-size: larger;
+    font-weight: 500;
+}
+
+.btn-google {
+    background: #c32f10;
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    color: #fff;
+    margin-top: 15px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-google:hover {
+    opacity: .8;
+    color: #fff;
 }

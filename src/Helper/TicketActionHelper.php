@@ -36,7 +36,7 @@ class TicketActionHelper extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $newTicket = $form->getData();
-            $statusType = $this->statusRepository->find(TicketStatusEnums::Unresolved->value);
+            $statusType = $this->statusRepository->find(TicketStatusEnums::Waiting->value);
             $dateCreated = new \DateTime();
             $user = $this->getUser();
 
